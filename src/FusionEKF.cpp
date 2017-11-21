@@ -128,6 +128,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		  dt_3/2*noise_ax, 0, dt_2*noise_ax, 0,
 		  0, dt_3/2*noise_ay, 0, dt_2*noise_ay;
   ekf_.Predict();
+  cout << "After Predict" << endl;
+  cout << "x_ = " << ekf_.x_ << endl;
+  cout << "P_ = " << ekf_.P_ << endl;
 
   /*****************************************************************************
    *  Update
@@ -144,13 +147,20 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	Hj_ = tools.CalculateJacobian(ekf_.x_);
 	ekf_.Init(ekf_.x_, ekf_.P_, ekf_.F_, Hj_, R_radar_, ekf_.Q_);
 	ekf_.UpdateEKF(measurement_pack.raw_measurements_);
+	cout << "After UpdateEKF" << endl;
+	cout << "x_ = " << ekf_.x_ << endl;
+	cout << "P_ = " << ekf_.P_ << endl;
   } else {
     // Laser updates
 	ekf_.Init(ekf_.x_, ekf_.P_, ekf_.F_, H_laser_, R_laser_, ekf_.Q_);
     ekf_.Update(measurement_pack.raw_measurements_);
+	cout << "After Update" << endl;
+	cout << "x_ = " << ekf_.x_ << endl;
+	cout << "P_ = " << ekf_.P_ << endl;
   }
 
   // print the output
+  cout << "End of iteration" << endl;
   cout << "x_ = " << ekf_.x_ << endl;
   cout << "P_ = " << ekf_.P_ << endl;
 }
