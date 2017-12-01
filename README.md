@@ -25,7 +25,7 @@ The [source code](https://github.com/schambon77/CarND-Extended-Kalman-Filter/tre
 
 ### Accuracy
 
-When testing with data set 1 in the simulator, the px, py, vx, vy output coordinates have an RMSE that meets the success criteria of <= [.11, .11, 0.52, 0.52], except for px which ends up at around 0.12.
+When testing with data set 1 in the simulator, the px, py, vx, vy output coordinates have an RMSE that meets the success criteria of <= [.11, .11, 0.52, 0.52].
 
 ### Follows the Correct Algorithm
 
